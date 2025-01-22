@@ -22,20 +22,20 @@
     run ./stringfun -c "There should be eight words in this sentence"
     [ "$status" -eq 0 ]
     [ "$output" = "Word Count: 8
-Buffer:  [There should be eight words in this sentence......]" ]
+Buffer:  There should be eight words in this sentence......" ]
 }
 
 @test "remove extra spaces" {
     run ./stringfun -c "   The   strange    spaces    should   be     removed   from this    "
     [ "$status" -eq 0 ]
     [ "$output" = "Word Count: 8
-Buffer:  [The strange spaces should be removed from this....]" ]
+Buffer:  The strange spaces should be removed from this...." ]
 }
 
 @test "reverse" {
     run ./stringfun -r "Reversed sentences look very weird"
     [ "$status" -eq 0 ]
-    [ "$output" = "Buffer:  [driew yrev kool secnetnes desreveR................]" ]
+    [ "$output" = "Buffer:  driew yrev kool secnetnes desreveR................" ]
 }
 
 @test "print words" {
@@ -53,13 +53,13 @@ Buffer:  [The strange spaces should be removed from this....]" ]
 8. test(4)
 
 Number of words returned: 8
-Buffer:  [Lets get a lot of words to test...................]" ]
+Buffer:  Lets get a lot of words to test..................." ]
 }
 
 @test "check max length" {
     run ./stringfun -r "This is the maximum length string that should work"
     [ "$status" -eq 0 ]
-    [ "$output" = "Buffer:  [krow dluohs taht gnirts htgnel mumixam eht si sihT]" ]
+    [ "$output" = "Buffer:  krow dluohs taht gnirts htgnel mumixam eht si sihT" ]
 }
 
 @test "check over max length" {
@@ -71,7 +71,7 @@ Buffer:  [Lets get a lot of words to test...................]" ]
 
 @test "basic string search replace" {
     run ./stringfun -x "This is a bad test" bad  great
-    [ "$output" = "Buffer:  [This is a great test..............................]" ] ||
+    [ "$output" = "Buffer:  This is a great test.............................." ] ||
     [ "$output" = "Not Implemented!" ]
 }
 
@@ -83,18 +83,18 @@ Buffer:  [Lets get a lot of words to test...................]" ]
 
 @test "basic overflow search replace" {
     run ./stringfun -x "This is a super long string for testing my program" testing  validating
-    [ "$output" = "Buffer:  [This is a super long string for validating my prog]" ] ||
+    [ "$output" = "Buffer:  This is a super long string for validating my prog" ] ||
     [ "$output" = "Not Implemented!" ]
 }
 
 @test "test overflow string replace" {
     run ./stringfun -x "This is a super long string for testing my program" testing  validating
-    [ "$output" = "Buffer:  [This is a super long string for validating my prog]" ] ||
+    [ "$output" = "Buffer:  This is a super long string for validating my prog" ] ||
     [ "$output" = "Not Implemented!" ]
 }
 
 @test "test shorter string replace" {
     run ./stringfun -x "This is a super long string for testing my program" program  app
-    [ "$output" = "Buffer:  [This is a super long string for testing my app....]" ] || 
+    [ "$output" = "Buffer:  This is a super long string for testing my app...." ] || 
     [ "$output" = "Not Implemented!" ]
 }

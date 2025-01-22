@@ -46,7 +46,7 @@ int setup_buff(char *buff, char *user_str, int len){
 
     while (count < len) {
         *toPtr++ = '.';
-        toPtr++;
+
         count++;
     }
 
@@ -85,15 +85,16 @@ int count_words(char *buff, int len, int str_len){
     char *pCurrentChar = buff;
 
     for (int i = 0; i < str_len; i++) {
-        if (*pCurrentChar != ' ') {
-            if (inWord == 0) {
-                inWord = 1;
-                count++;
-            } else {
+        if (*pCurrentChar != ' ' && inWord == 0) {
+            count++;
+            inWord = 1;
+            }
+        if (*pCurrentChar == ' ' && inWord == 1){
                 inWord = 0;
             }
-        }
+
         pCurrentChar++;
+
     }
 
     return count;
@@ -123,7 +124,7 @@ int reversed_string(char *buff, int len, int str_len) {
 
 
 int print_words(char *buff, int len, int str_len) {
-    printf("Word print\n");
+    printf("Word Print\n");
     printf("----------\n");
 
     char *pCurrentChar = buff;
@@ -137,18 +138,20 @@ int print_words(char *buff, int len, int str_len) {
         if (i >= str_len) {
             break;
         }
-        wordCount++;
-        printf("%d.", wordCount);
+       wordCount++;
+        printf("%d. ", wordCount);
 
-        int wordLength = 0;
+       int wordLength = 0;
         while ((i < str_len) && (*pCurrentChar != ' ')) {
             printf("%c", *pCurrentChar);
             pCurrentChar++;
             i++;
             wordLength++;
         }
-        printf(" (%d)\n", wordLength);
+        printf("(%d)\n", wordLength);
     }
+    printf("\nNumber of words returned: %d\n", wordCount);
+
     return 0;
 }
 
@@ -234,11 +237,11 @@ int main(int argc, char *argv[]){
             free(buff);
             exit(3);
         }
-        printf("Reversed String:");
-        for (int i = 0; i < user_str_len; i++) {
-            putchar(*(buff+i));
-        }
-        putchar('\n');
+//        printf("Reversed String:");
+//        for (int i = 0; i < user_str_len; i++) {
+//            putchar(*(buff+i));
+//        }
+//        putchar('\n');
         break;
 
         case 'w':
@@ -253,13 +256,14 @@ int main(int argc, char *argv[]){
                 printf("Error printing words, rc = %d", rc);
                 free(buff);
                 exit(3);
-            }
+            }	
             break;
 
         case 'x':
-            // not implemented yet
+            // not implemented 
+            printf("Not Implemented!");
         free(buff);
-        exit(0);
+	exit(0);
         break;
 
         //TODO:  #5 Implement the other cases for 'r' and 'w' by extending
@@ -283,6 +287,6 @@ int main(int argc, char *argv[]){
 //          the buff variable will have exactly 50 bytes?
 //
 //          PLACE YOUR ANSWER HERE
-//          It is easier to read for the person that is maintaining the code. 
-//          It is also good practice because it can be helpful to catch errors. 
+//          It is easier to read for the person that is maintaining the code.
+//          It is also good practice because it can be helpful to catch errors.
 

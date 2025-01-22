@@ -1,5 +1,5 @@
 ---
 triple:          'arm64-apple-darwin'
-binary-path:     '/Users/nushratdanial/cs283/1-C Refresher/stringfun'
+binary-path:     '/Users/nushratdanial/cs283/1-CRefresher/stringfun'
 relocations:     []
 ...
